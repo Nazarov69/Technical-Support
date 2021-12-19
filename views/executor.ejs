@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Исполнитель</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="header-title">Служба технической поддержки</h1>
+    <a href="/">Выйти</a>
+  </header>
+  <section class="bd">
+    <div class="container">
+      <div class="bd-box">
+
+        <% result.forEach(requests=> { %>
+          <div class="requests">
+            <p class="requests-title">Проблема №<%= requests.id %>
+            </p>
+            <p>
+              <%= requests.username %>
+            </p>
+            <p>
+              <%= requests.phone %>
+            </p>
+            <p class="requests-title">Вопрос</p>
+            <p>
+              <%= requests.requests %>
+            </p>
+            <p class="requests-title">Ответ</p>
+            <form class="executor-form" action="/executor/responses" method="POST">
+              <input class="help" name="requestsId" value="<%= requests.id %>">
+              <input type="text" name="responses" placeholder="Решение проблемы" required>
+              <input type="submit" value="Отправить">
+            </form>
+          </div>
+          <% }); %>
+
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Пользователь</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="header-title">Служба технической поддержки</h1>
+    <a href="/">Выйти</a>
+  </header>
+  <form action="/user/requests" method="POST">
+    <h3>Сообщить о проблеме</h3>
+    <input type="text" name="username" placeholder="ФИО" required>
+    <input type="tel" name="phone" placeholder="Телефон" required>
+    <input type="text" name="requests" placeholder="Проблема" required>
+    <input type="submit" value="Отправить">
+  </form>
+  <section class="bd">
+    <h3>Список обращений</h3>
+    <div class="bd-box">
+
+      <% result.forEach(requests=> { %>
+        <div class="requests">
+          <p class="requests-title">Проблема №<%= requests.id %>
+          </p>
+          <p>
+            <%= requests.username %>
+          </p>
+          <p>
+            <%= requests.phone %>
+          </p>
+          <p class="requests-title">Вопрос</p>
+          <p>
+            <%= requests.requests %>
+          </p>
+          <p class="requests-title">Ответ</p>
+          <p>
+            <% if(requests.responses=='' ) { %>
+              <span class="requests-responses">Ожидает ответа</span>
+              <% } else { %>
+                <%= requests.responses %>
+                  <% } %>
+          </p>
+        </div>
+        <% }); %>
+
+    </div>
+  </section>
+</body>
+
+</html>
